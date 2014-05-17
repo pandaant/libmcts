@@ -1,10 +1,3 @@
-/*
- * File:   main.cpp
- * Author: batman
- *
- * Created on July 31, 2013, 9:01 PM
- */
-
 #include <iostream>
 #include <string.h>
 #include <UnitTest++.h>

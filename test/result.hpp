@@ -1,10 +1,3 @@
-/* 
- * File:   result.hpp
- * Author: batman
- *
- * Created on August 4, 2013, 12:41 PM
- */
-
 #ifndef RESULT_H
 #define	RESULT_H
 
@@ -14,12 +7,15 @@
 
 class RPSResult {
 public:
-    ActionType::Enum action;
+  ActionType::Enum action;
 
-    RPSResult(MC::INode* next_move_node) {
-        action = ((RockPaperScissors*) next_move_node->get_context())->p1_action;
-    }
+  RPSResult(node_t *next_move_node) {
+    action = (next_move_node->context()).p1_action;
+  }
+
+  string to_str(){
+    return ActionType::ToStr[action];
+  }
 };
 
-#endif	/* RESULT_H */
-
+#endif
