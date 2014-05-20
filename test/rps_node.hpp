@@ -14,29 +14,35 @@
 #include "rps_config.hpp"
 #include "end_node.hpp"
 
-class RPSNode : public InnerNode {
-public:
+using mcts::InnerNode;
+using mcts::SampleWeightedBackpropagationStrategy;
 
-    RPSNode(Context* _context, INode* _parent, Config* _config) :
-    InnerNode(_context, _parent, _config, new SampleWeightedBackpropagationStrategy()) {
+template<typename Context, typename Config>
+class RPSNode : public InnerNode<Context, Config> {
+    typedef typename mcts::INode<Context, Config>::node_t node_t;
+    typedef EndNode<Context, Config> end_node_t;
+    typedef RPSNode<Context, Config> rps_node_t;
+public:
+    RPSNode(const Context &_context, Config* _config, node_t* _parent) :
+    InnerNode<Context, Config>(_context, _config, _parent, new SampleWeightedBackpropagationStrategy()) {
     }
 
     ~RPSNode() {
     }
 
     void expand() {
-        vector<Context*> contexts = context->transition();
-        std::for_each(contexts.begin(), contexts.end(), [&](Context * c) {
-            if (c->is_terminal())
-                this->children.push_back((INode*) new EndNode(c, (INode*)this, this->config));
+        vector<Context> contexts = this->context().transition();
+        std::for_each(contexts.begin(), contexts.end(), [&](Context& c) {
+            if (c.is_terminal())
+                this->add_child((node_t*) new end_node_t(c, this->config(), (node_t*)this));
             else
-                this->children.push_back((INode*) new RPSNode(c, (INode*)this, this->config));
+                this->add_child((node_t*) new rps_node_t(c, this->config(), (node_t*)this));
         });
         contexts.clear();
     }
 
-    virtual INode* select_child() {
-        return ((RPSConfig*) this->config)->select_strat->select((INode*)this);
+    virtual node_t* select_child() {
+        return this->config()->select_strat->select((node_t*)this);
     }
     
     /*virtual INode* select_child() {

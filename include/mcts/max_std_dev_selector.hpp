@@ -21,10 +21,10 @@ class MaxStdDeviationSelector : public MaxFunctionSelector<Context, Config> {
 
 public:
   virtual double evaluate(node_t *node) {
-    int nb_samples = node->get_nb_samples();
+    int nb_samples = node->nb_samples();
     if (nb_samples < 2)
       return 0;
-    return node->get_std_dev();
+    return node->std_dev();
   }
 };
 }

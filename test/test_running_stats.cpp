@@ -2,7 +2,7 @@
 #include "running_stats.hpp"
 
 SUITE(MCTSTests) {
-  using namespace MC;
+  using namespace mcts;
 
   TEST(RunningStatsCorrectness) {
     RunningStats stats = RunningStats();

@@ -5,6 +5,9 @@
 
 #include "rock_paper_scissors.hpp"
 
+using mcts::LeafNode;
+using mcts::INode;
+
 template <typename Context, typename Config>
 struct EndNode : public LeafNode<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;

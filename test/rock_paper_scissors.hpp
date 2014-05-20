@@ -1,17 +1,8 @@
-/* 
- * File:   rock_paper_scissors.hpp
- * Author: batman
- *
- * Created on August 1, 2013, 4:29 PM
- */
-
 #ifndef Player_H
 #define	Player_H
 
 #include <string>
 #include <vector>
-//#include <boost/pool/singleton_pool.hpppp>
-#include <context.hpp>
 #include "action_type.hpp"
 
 using std::string;

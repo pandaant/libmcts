@@ -30,6 +30,7 @@ public:
 
   unsigned nb_nodes() { return tree->count_recursive(); }
   unsigned nb_iterations() { return iteration_cnt; }
+  const node_t* root() const { return tree; }
 
 private:
   node_t *tree;

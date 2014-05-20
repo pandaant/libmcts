@@ -18,11 +18,13 @@ namespace mcts {
  **/
 template <typename Context, typename Config>
 class MinSampleSelector : public MinFunctionSelector<Context, Config> {
+    typedef typename INode<Context, Config>::node_t node_t;
+
 public:
 
   MinSampleSelector() {}
 
-  virtual double evaluate(INode<Context, Config> *node) { return node->get_nb_samples(); }
+  virtual double evaluate(node_t *node) { return node->nb_samples(); }
 };
 }
 

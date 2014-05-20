@@ -32,12 +32,12 @@ public:
 
   // for formular look at : Technical Report TUD�KE�2009-2
   double evaluate(INode<Context, Config> *node) {
-    int nb_samples = node->get_nb_samples();
+    int nb_samples = node->nb_samples();
     if (nb_samples == 0)
       return 0;
 
-    int nb_parent_samples = node->get_parent()->get_nb_samples();
-    return node->get_ev() +
+    int nb_parent_samples = node->parent()->nb_samples();
+    return node->ev() +
            C * sqrt(log((double)nb_parent_samples) / nb_samples);
   }
 };

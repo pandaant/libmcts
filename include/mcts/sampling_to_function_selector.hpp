@@ -28,7 +28,7 @@ public:
 
   INode<Context, Config> *select(INode<Context, Config> *node) {
     // choose random child if smaller than threshold
-    if (node->get_nb_samples() < threshold)
+    if (node->nb_samples() < threshold)
       return sselector.select(node);
     else
       return function_strat->select(node);

@@ -19,7 +19,7 @@ class MinFunctionSelector : public SelectionStrategy<Context, Config> {
 
 public:
   node_t *select(node_t *node) {
-    vector<node_t *> children = node->get_children();
+    vector<node_t *> children = node->children();
     vector<double> values(0);
     node_t *min_node = NULL;
 

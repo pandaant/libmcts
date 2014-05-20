@@ -5,7 +5,9 @@
 #include "action_type.hpp"
 #include "rock_paper_scissors.hpp"
 
+template<typename Context, typename Config>
 class RPSResult {
+    typedef typename mcts::INode<Context, Config>::node_t node_t;
 public:
   ActionType::Enum action;
 
