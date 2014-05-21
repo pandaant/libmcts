@@ -15,6 +15,7 @@
 SUITE(SelectionTests) {
   using namespace mcts;
   typedef typename INode<RockPaperScissors, RPSConfig>::node_t node_t;
+  typedef typename ISelectionStrategy<RockPaperScissors, RPSConfig>::sstrategy_t sstrategy_t;
 
   struct Setup {
     RockPaperScissors context;
@@ -22,8 +23,8 @@ SUITE(SelectionTests) {
     Player p1, p2;
     ActionType::Enum p1a, p2a;
     BackpropagationStrategy *bp_strat;
-    SelectionStrategy<RockPaperScissors,RPSConfig> *select_strat;
-    SelectionStrategy<RockPaperScissors,RPSConfig> *move_select_strat;
+    sstrategy_t *select_strat;
+    sstrategy_t *move_select_strat;
     RootNode<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors, RPSConfig>> *root;
 
     Setup() {

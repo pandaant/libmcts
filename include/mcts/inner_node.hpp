@@ -41,7 +41,7 @@ public:
 
   virtual node_t *select_child() = 0;
 
-  virtual void accept(visitor_t *visitor) const { visitor->visit(this); }
+  virtual void accept(visitor_t *visitor) { visitor->visit(this); }
 
   virtual const vector<node_t *> children() const { return children_; }
 

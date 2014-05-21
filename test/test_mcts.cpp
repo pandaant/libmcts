@@ -11,6 +11,7 @@
 SUITE(MCTSTests) {
   using namespace mcts;
   typedef typename INode<RockPaperScissors, RPSConfig>::node_t node_t;
+  typedef typename ISelectionStrategy<RockPaperScissors, RPSConfig>::sstrategy_t sstrategy_t;
 
   struct Setup {
     RockPaperScissors context;
@@ -19,8 +20,8 @@ SUITE(MCTSTests) {
     ActionType::Enum p1a, p2a;
     MCTS<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors,RPSConfig>, RPSResult<RockPaperScissors,RPSConfig>> *mcts;
     BackpropagationStrategy *bp_strat;
-    SelectionStrategy<RockPaperScissors,RPSConfig> *select_strat;
-    SelectionStrategy<RockPaperScissors,RPSConfig> *move_select_strat;
+    ISelectionStrategy<RockPaperScissors,RPSConfig> *select_strat;
+    ISelectionStrategy<RockPaperScissors,RPSConfig> *move_select_strat;
 
     Setup() {
       int game = 1;
@@ -57,7 +58,7 @@ SUITE(MCTSTests) {
 
   TEST_FIXTURE(Setup, TestTreeExploration) {
     // min selection used so every node is expanded with enough iterations
-    SelectionStrategy<RockPaperScissors,RPSConfig> *selector = new MinSampleSelector<RockPaperScissors,RPSConfig>();
+    sstrategy_t *selector = new MinSampleSelector<RockPaperScissors,RPSConfig>();
     RPSConfig *c = new RPSConfig(bp_strat, selector, move_select_strat, false);
 
     MCTS<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors, RPSConfig>, RPSResult<RockPaperScissors, RPSConfig> > *m =

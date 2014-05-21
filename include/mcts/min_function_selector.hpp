@@ -2,7 +2,7 @@
 #define MIN_FUNCTION_SELECTOR_H
 
 #include <vector>
-#include "selection_strategy.hpp"
+#include "iselection_strategy.hpp"
 #include "inode.hpp"
 
 namespace mcts {
@@ -14,7 +14,7 @@ using std::vector;
  * evaluation function.
  **/
 template <typename Context, typename Config>
-class MinFunctionSelector : public SelectionStrategy<Context, Config> {
+class MinFunctionSelector : public ISelectionStrategy<Context, Config> {
     typedef typename INode<Context, Config>::node_t node_t;
 
 public:

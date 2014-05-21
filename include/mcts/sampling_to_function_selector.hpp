@@ -5,36 +5,41 @@
 
 namespace mcts {
 
-/**
- * SamplingToFunctionSelector
- * Uses the Sampling selector until a given
- * threshold is exeeded. After that the supplied
- * SelectionStrategy is used.
- **/
+// ----------------------------------------------------------------------
+/// @brief   Uses sampling selector until threshold is reached.
+///          After that a supplied selection strategy is applied.
+///
+/// @tparam Context @README
+/// @tparam Config  @README
+// ----------------------------------------------------------------------
 template <typename Context, typename Config>
-class SamplingToFunctionSelector : public SelectionStrategy<Context, Config> {
+class SamplingToFunctionSelector : public ISelectionStrategy<Context, Config> {
+  typedef SamplingSelector<Context, Config> sampling_selector_t;
+  typedef typename INode<Context, Config>::node_t node_t;
+  typedef typename ISelectionStrategy<Context, Config>::sstrategy_t sstrategy_t;
+
 public:
+  /// number of samples before the strategy is switched.
   int threshold;
-  SamplingSelector<Context, Config> sselector;
-  SelectionStrategy<Context, Config> *function_strat;
+  sstrategy_t *function_strat;
+  sampling_selector_t sselector;
 
-  /**
-   * @param _threshold	if exeeded, _functionStrategy is used
-   * @param _functionStrat..	Strategy to use if theshold is exeeded
-   **/
-  SamplingToFunctionSelector(int _threshold, SelectionStrategy<Context, Config> *_function_strat)
-      : threshold(_threshold), sselector(SamplingSelector<Context, Config>()),
-        function_strat(_function_strat) {}
+  // ----------------------------------------------------------------------
+  /// @brief   create new selector
+  ///
+  /// @param threshold_ number of samples that must have run through
+  ///                   the node before strategies are switched.
+  /// @param function_strat_ pointer to selection strategy to switch to.
+  // ----------------------------------------------------------------------
+  SamplingToFunctionSelector(int threshold_, sstrategy_t *function_strat_)
+      : threshold(threshold_), sselector(sampling_selector_t()),
+        function_strat(function_strat_) {}
 
-  INode<Context, Config> *select(INode<Context, Config> *node) {
-    // choose random child if smaller than threshold
-    if (node->nb_samples() < threshold)
-      return sselector.select(node);
-    else
-      return function_strat->select(node);
+  node_t *select(node_t *node) {
+    return (node->nb_samples() < threshold) ? sselector.select(node)
+                                            : function_strat->select(node);
   }
 };
 }
 
-#endif /* SAMPLING_TO_FUNCTION_SELECTOR_H */
-
+#endif

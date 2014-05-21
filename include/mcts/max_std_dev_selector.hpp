@@ -2,7 +2,7 @@
 #define	MAX_VARIANCE_SELECTOR_H
 
 #include "inode.hpp"
-#include "selection_strategy.hpp"
+#include "iselection_strategy.hpp"
 
 namespace mcts {
 
@@ -20,7 +20,7 @@ class MaxStdDeviationSelector : public MaxFunctionSelector<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;
 
 public:
-  virtual double evaluate(node_t *node) {
+  virtual double evaluate(node_t *node) const{
     int nb_samples = node->nb_samples();
     if (nb_samples < 2)
       return 0;

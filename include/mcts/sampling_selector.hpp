@@ -3,21 +3,30 @@
 
 #include <random>
 #include "inode.hpp"
-#include "selection_strategy.hpp"
+#include "iselection_strategy.hpp"
 
 namespace mcts {
 
-/**
- * SamplingSelector
- * Selects a random child, based on an uniform distribution.
- **/
+// ----------------------------------------------------------------------
+/// @brief   selector that chooses random children uniformly
+///
+/// @tparam Context @README
+/// @tparam Config  @README
+// ----------------------------------------------------------------------
 template <typename Context, typename Config>
-class SamplingSelector : public SelectionStrategy<Context, Config> {
+class SamplingSelector : public ISelectionStrategy<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;
 
 public:
   typedef std::uniform_int_distribution<> DistributionType;
 
+  // ----------------------------------------------------------------------
+  /// @brief   randomly chooses a child of node
+  ///
+  /// @param node to select child from
+  ///
+  /// @return a random node
+  // ----------------------------------------------------------------------
   node_t *select(node_t *node) {
     DistributionType dist(0, node->children().size() - 1);
     int rand = dist(*node->config()->nb_gen());

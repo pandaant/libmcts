@@ -120,7 +120,7 @@ public:
   ///
   /// @param visitor a visitor
   // ----------------------------------------------------------------------
-  virtual void accept(visitor_t *visitor) const = 0;
+  virtual void accept(visitor_t *visitor) = 0;
 
   // ----------------------------------------------------------------------
   /// @brief   applies a backpropagation strategy to traverse the simulated

@@ -14,7 +14,7 @@ class MaxValueSelector : public MaxFunctionSelector<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;
 
 public:
-  virtual double evaluate(node_t *node){ return node->ev(); }
+  virtual double evaluate(node_t *node) const{ return node->ev(); }
 };
 }
 
