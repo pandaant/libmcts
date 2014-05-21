@@ -16,5 +16,4 @@ public:
 };
 }
 
-#endif /* SELECTION_STRATEGY_H */
-
+#endif
