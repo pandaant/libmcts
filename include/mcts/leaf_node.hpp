@@ -3,11 +3,13 @@
 
 namespace mcts {
 
-/**
- * LeafNode
- * Terminal node of the Tree
- * all types of terminal nodes must be derived from this.
- **/
+// ----------------------------------------------------------------------
+/// @brief   implements methods of the inode interface that are used
+///          for terminal contexts. all leaf nodes are terminal.
+///
+/// @tparam Context @README
+/// @tparam Config  @README
+// ----------------------------------------------------------------------
 template <typename Context, typename Config>
 class LeafNode : public INode<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;
@@ -15,18 +17,15 @@ class LeafNode : public INode<Context, Config> {
 
 public:
   Context context_;
-  node_t *parent_;
   Config *config_;
+  node_t *parent_;
   int nb_samples_;
 
   LeafNode(const Context &context, Config *config, node_t *parent)
       : context_(context), parent_(parent), config_(config), nb_samples_(0) {}
 
-  /**
-   * transition current context and store resulting
-   * contexts as children.
-   * not implemented in leaf nodes.
-   */
+  virtual ~LeafNode() {}
+
   virtual void expand() { throw std::runtime_error("not supported"); }
 
   virtual void accept(visitor_t *visitor) { visitor->visit(this); }
@@ -41,13 +40,13 @@ public:
 
   virtual const vector<node_t *> children() const { return vector<node_t *>(); }
 
-  virtual void add_child(node_t *child) { throw std::runtime_error("not supported"); }
+  virtual void add_child(node_t *child) {
+    throw std::runtime_error("not supported");
+  }
 
   virtual node_t *select_recusively() { return this; }
 
   virtual node_t *select_child() { return this; }
-
-  ~LeafNode() {}
 };
 }
 
