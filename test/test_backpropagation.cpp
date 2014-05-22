@@ -1,11 +1,11 @@
 #include <UnitTest++.h>
-#include <sw_backpropagation.hpp>
+#include <avg_backpropagation_strategy.hpp>
 
 SUITE(BackpropagationTests) {
   using namespace mcts;
 
   TEST(TestSWBackpropagation) {
-    SampleWeightedBackpropagationStrategy stats;
+    AvgBackpropagationStrategy stats;
 
     CHECK_EQUAL(0, stats.ev());
     CHECK_EQUAL(0, stats.variance());

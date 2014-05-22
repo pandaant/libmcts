@@ -8,43 +8,47 @@
 namespace mcts {
 using std::vector;
 
-/**
- * MinFunctionSelector
- * Selects the child that minimizes the
- * evaluation function.
- **/
+// ----------------------------------------------------------------------
+/// @brief  selects a node that minimises a given metric
+///
+/// @tparam Context @README
+/// @tparam Config  @README
+// ----------------------------------------------------------------------
 template <typename Context, typename Config>
 class MinFunctionSelector : public ISelectionStrategy<Context, Config> {
-    typedef typename INode<Context, Config>::node_t node_t;
+  typedef typename INode<Context, Config>::node_t node_t;
 
 public:
   node_t *select(node_t *node) {
     vector<node_t *> children = node->children();
-    vector<double> values(0);
+    vector<double> values(children.size());
     node_t *min_node = NULL;
 
-    // evaluate all children
-    for (unsigned i = 0; i < children.size(); i++)
-      values.push_back(evaluate(children[i]));
+    for (unsigned i = 0; i < children.size(); i++) {
+      values[i] = evaluate(children[i]);
+    }
 
-    // find min element
-    int min_index =
+    size_t min_index =
         std::min_element(values.begin(), values.end()) - values.begin();
     min_node = children[min_index];
 
     if (min_node == NULL) {
-      // fallback strategy
+      throw std::logic_error("MinFunctionSelector failed to select a node.");
     }
     return min_node;
   }
 
-  /**
-   * implement in derived classes.
-   * evaluates a node and returns the numerical value.
-   **/
-  virtual double evaluate(node_t *node) = 0;
+  // ----------------------------------------------------------------------
+  /// @brief   this function has to be implemented in derived classes that
+  ///          specializes the metric to be used. every child is evaluated
+  ///          against this method.
+  ///
+  /// @param node to evaluate
+  ///
+  /// @return number representing some metric.
+  // ----------------------------------------------------------------------
+  virtual double evaluate(node_t *node) const = 0;
 };
 }
 
-#endif /* MIN_FUNCTION_SELECTOR_H */
-
+#endif

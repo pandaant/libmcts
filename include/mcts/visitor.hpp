@@ -15,5 +15,4 @@ public:
 };
 }
 
-#endif /* VISITOR_H */
-
+#endif

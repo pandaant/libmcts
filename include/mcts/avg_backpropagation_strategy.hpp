@@ -6,10 +6,10 @@
 
 namespace mcts {
 
-/**
- * class SampleWeightedBackpropagationStrategy
- * Backpropagates the mean of every node.
- **/
+// ----------------------------------------------------------------------
+/// @brief   adds the backpropagated value to a running stats object
+///          that calculates the ev, mean and variance.
+// ----------------------------------------------------------------------
 class AvgBackpropagationStrategy : public IBackpropagationStrategy {
 public:
   RunningStats stats;

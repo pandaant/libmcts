@@ -1,5 +1,5 @@
 #include <UnitTest++.h>
-#include <sw_backpropagation.hpp>
+#include <avg_backpropagation_strategy.hpp>
 #include <max_value_selector.hpp>
 #include <root_node.hpp>
 #include "rock_paper_scissors.hpp"
@@ -29,7 +29,7 @@ SUITE(NodeTests) {
       p1a = ActionType::PAPER;
       p2a = ActionType::ROCK;
       context = RockPaperScissors(p1, p2, p1a, p2a, game);
-      bp_strat = new SampleWeightedBackpropagationStrategy();
+      bp_strat = new AvgBackpropagationStrategy();
       select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
       move_select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
 
@@ -123,7 +123,7 @@ SUITE(NodeTests) {
 
   /*  TEST_FIXTURE(Setup, TestSimulate){
         RPSConfig* conf = new RPSConfig(
-                    new SampleWeightedBackpropagationStrategy(),
+                    new AvgBackpropagationStrategy(),
                     new MaxValueSelector()
                     );
 

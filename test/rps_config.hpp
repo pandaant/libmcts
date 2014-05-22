@@ -2,7 +2,7 @@
 #define RPS_CONFIG_H
 
 #include <iselection_strategy.hpp>
-#include <sw_backpropagation.hpp>
+#include <avg_backpropagation_strategy.hpp>
 #include <max_value_selector.hpp>
 
 using mcts::IBackpropagationStrategy;

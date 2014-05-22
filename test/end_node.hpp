@@ -5,8 +5,8 @@
 
 #include "rock_paper_scissors.hpp"
 
-using mcts::LeafNode;
 using mcts::INode;
+using mcts::LeafNode;
 
 template <typename Context, typename Config>
 struct EndNode : public LeafNode<Context, Config> {
@@ -27,7 +27,7 @@ struct EndNode : public LeafNode<Context, Config> {
            (this->context().p1.ptie() * payoff_3_games * 0.5);
   }
 
-  virtual void backpropagate(double value) {
+  virtual void backpropagate(const double& value) {
     ++this->nb_samples_;
     this->parent_->backpropagate(value);
   }

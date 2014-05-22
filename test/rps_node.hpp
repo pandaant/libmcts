@@ -3,12 +3,12 @@
 
 #include <inode.hpp>
 #include <inner_node.hpp>
-#include <sw_backpropagation.hpp>
+#include <avg_backpropagation_strategy.hpp>
 #include "rps_config.hpp"
 #include "end_node.hpp"
 
 using mcts::InnerNode;
-using mcts::SampleWeightedBackpropagationStrategy;
+using mcts::AvgBackpropagationStrategy;
 
 template <typename Context, typename Config>
 class RPSNode : public InnerNode<Context, Config> {
@@ -22,7 +22,7 @@ public:
   RPSNode(const Context &_context, Config *_config, node_t *_parent)
       : InnerNode<Context, Config>(
             _context, _config, _parent,
-            new SampleWeightedBackpropagationStrategy()) {}
+            new AvgBackpropagationStrategy()) {}
 
   ~RPSNode() {}
 

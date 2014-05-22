@@ -30,7 +30,7 @@ SUITE(SelectionTests) {
     Setup() {
       context = RockPaperScissors(Player("mark"), Player("simon"),
                                   ActionType::PAPER, ActionType::ROCK, 1);
-      bp_strat = new SampleWeightedBackpropagationStrategy();
+      bp_strat = new AvgBackpropagationStrategy();
       select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
       move_select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
 

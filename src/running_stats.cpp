@@ -11,7 +11,7 @@ void RunningStats::clear() {
   M1 = M2 = M3 = M4 = 0.0;
 }
 
-void RunningStats::push(double x) {
+void RunningStats::push(const double& x) {
   double delta, delta_n, delta_n2, term1;
 
   long long n1 = n;

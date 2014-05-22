@@ -73,7 +73,7 @@ public:
 
   virtual int nb_samples() const { return backprop_strat_->nb_samples(); }
 
-  virtual void backpropagate(double value) {
+  virtual void backpropagate(const double& value) {
     backprop_strat_->on_backpropagate(value);
     parent_->backpropagate(value);
   }

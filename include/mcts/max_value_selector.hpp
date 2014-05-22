@@ -5,16 +5,18 @@
 
 namespace mcts {
 
-/**
- * MaxValueSelector
- * selects child with max ev
- **/
+// ----------------------------------------------------------------------
+/// @brief   selects the child which maximises ev
+///
+/// @tparam Context @README
+/// @tparam Config  @README
+// ----------------------------------------------------------------------
 template <typename Context, typename Config>
 class MaxValueSelector : public MaxFunctionSelector<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;
 
 public:
-  virtual double evaluate(node_t *node) const{ return node->ev(); }
+  virtual double evaluate(node_t *node) const { return node->ev(); }
 };
 }
 

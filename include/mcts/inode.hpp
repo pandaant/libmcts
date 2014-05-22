@@ -128,7 +128,7 @@ public:
   ///
   /// @param value
   // ----------------------------------------------------------------------
-  virtual void backpropagate(double value) = 0;
+  virtual void backpropagate(const double& value) = 0;
 
   // ----------------------------------------------------------------------
   /// @brief   recursively counts number of childen beneth this nodes.

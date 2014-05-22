@@ -1,6 +1,6 @@
 #include <UnitTest++.h>
 #include <mcts.hpp>
-#include <sw_backpropagation.hpp>
+#include <avg_backpropagation_strategy.hpp>
 #include <max_value_selector.hpp>
 #include <min_sample_selector.hpp>
 #include "rock_paper_scissors.hpp"
@@ -32,7 +32,7 @@ SUITE(MCTSTests) {
       p1a = ActionType::PAPER;
       p2a = ActionType::ROCK;
       context = RockPaperScissors(p1, p2, p1a, p2a, game);
-      bp_strat = new SampleWeightedBackpropagationStrategy();
+      bp_strat = new AvgBackpropagationStrategy();
       select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
       move_select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
 
