@@ -18,7 +18,7 @@ SUITE(NodeTests) {
     ActionType::Enum p1a, p2a;
     RPSConfig *conf;
     int game;
-    BackpropagationStrategy *bp_strat;
+    IBackpropagationStrategy *bp_strat;
     sstrategy_t *select_strat;
     sstrategy_t *move_select_strat;
 

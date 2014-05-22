@@ -26,8 +26,9 @@ public:
     vector<node_t *> children = node->children();
     vector<double> values(children.size());
 
-    for (unsigned i = 0; i < children.size(); i++)
+    for (unsigned i = 0; i < children.size(); ++i){
       values[i] = evaluate(children[i]);
+    }
 
     size_t max_index =
         std::max_element(values.begin(), values.end()) - values.begin();

@@ -5,7 +5,7 @@
 #include <sw_backpropagation.hpp>
 #include <max_value_selector.hpp>
 
-using mcts::BackpropagationStrategy;
+using mcts::IBackpropagationStrategy;
 using mcts::ISelectionStrategy;
 
 class RPSConfig {
@@ -15,11 +15,11 @@ class RPSConfig {
 
 public:
   generator_t *nb_gen_;
-  BackpropagationStrategy *bp_strat;
+  IBackpropagationStrategy *bp_strat;
   sstrategy_t *select_strat;
   sstrategy_t *move_selection_strat_;
 
-  RPSConfig(BackpropagationStrategy *bps, sstrategy_t *ss, sstrategy_t *mss,
+  RPSConfig(IBackpropagationStrategy *bps, sstrategy_t *ss, sstrategy_t *mss,
             bool seed = true)
       : bp_strat(bps), select_strat(ss), move_selection_strat_(mss),
         nb_gen_(new generator_t(0)) {}

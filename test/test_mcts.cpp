@@ -19,7 +19,7 @@ SUITE(MCTSTests) {
     Player p1, p2;
     ActionType::Enum p1a, p2a;
     MCTS<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors,RPSConfig>, RPSResult<RockPaperScissors,RPSConfig>> *mcts;
-    BackpropagationStrategy *bp_strat;
+    IBackpropagationStrategy *bp_strat;
     ISelectionStrategy<RockPaperScissors,RPSConfig> *select_strat;
     ISelectionStrategy<RockPaperScissors,RPSConfig> *move_select_strat;
 

@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 #include "inode.hpp"
-#include "backpropagation_strategy.hpp"
+#include "ibackpropagation_strategy.hpp"
 
 namespace mcts {
 
@@ -30,10 +30,10 @@ class InnerNode : public INode<Context, Config> {
 
 public:
   /// strategy that is used for propagating values back in the tree.
-  BackpropagationStrategy *backprop_strat_;
+  IBackpropagationStrategy *backprop_strat_;
 
   InnerNode(const Context &context, Config *config, node_t *parent,
-            BackpropagationStrategy *backprop_strat)
+            IBackpropagationStrategy *backprop_strat)
       : context_(context), config_(config), parent_(parent),
         backprop_strat_(backprop_strat) {}
 

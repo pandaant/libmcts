@@ -1,5 +1,5 @@
-#ifndef SELECTION_STRATEGY_H
-#define SELECTION_STRATEGY_H
+#ifndef ISELECTION_STRATEGY_H
+#define ISELECTION_STRATEGY_H
 
 #include <random>
 #include "inode.hpp"

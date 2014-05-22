@@ -22,7 +22,7 @@ SUITE(SelectionTests) {
     RPSConfig *conf;
     Player p1, p2;
     ActionType::Enum p1a, p2a;
-    BackpropagationStrategy *bp_strat;
+    IBackpropagationStrategy *bp_strat;
     sstrategy_t *select_strat;
     sstrategy_t *move_select_strat;
     RootNode<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors, RPSConfig>> *root;
