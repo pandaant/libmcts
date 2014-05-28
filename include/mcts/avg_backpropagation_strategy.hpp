@@ -12,8 +12,6 @@ namespace mcts {
 // ----------------------------------------------------------------------
 class AvgBackpropagationStrategy : public IBackpropagationStrategy {
 public:
-  RunningStats stats;
-
   AvgBackpropagationStrategy() : stats() {}
 
   virtual void on_backpropagate(const double &value) { stats.push(value); }
@@ -29,6 +27,9 @@ public:
   virtual IBackpropagationStrategy *create() {
     return new AvgBackpropagationStrategy();
   }
+
+private:
+  RunningStats stats;
 };
 }
 

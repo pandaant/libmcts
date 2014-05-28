@@ -13,14 +13,9 @@ namespace mcts {
 template <typename Context, typename Config>
 class LeafNode : public INode<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;
-  typedef typename Visitor<Context, Config>::visitor_t visitor_t;
+  typedef typename IVisitor<Context, Config>::visitor_t visitor_t;
 
 public:
-  Context context_;
-  Config *config_;
-  node_t *parent_;
-  int nb_samples_;
-
   LeafNode(const Context &context, Config *config, node_t *parent)
       : context_(context), parent_(parent), config_(config), nb_samples_(0) {}
 
@@ -47,6 +42,12 @@ public:
   virtual node_t *select_recusively() { return this; }
 
   virtual node_t *select_child() { return this; }
+
+protected:
+  Context context_;
+  Config *config_;
+  node_t *parent_;
+  int nb_samples_;
 };
 }
 

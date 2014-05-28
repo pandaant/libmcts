@@ -5,7 +5,6 @@
 #include <sampling_selector.hpp>
 #include <sampling_to_function_selector.hpp>
 #include <min_sample_selector.hpp>
-#include <max_std_dev_selector.hpp>
 #include <uct_selector.hpp>
 #include <root_node.hpp>
 #include "rock_paper_scissors.hpp"
@@ -173,45 +172,6 @@ SUITE(SelectionTests) {
    //choosen.
    
     CHECK_EQUAL(children[8], selector.select(root));
-  }
-
-  TEST_FIXTURE(Setup, TestMaxStdDevSelectoTestMaxStdDevSelector) {
-    MaxStdDeviationSelector<RockPaperScissors,RPSConfig> selector;
-
-    CHECK_EQUAL(9, root->children().size());
-
-    // backpropagate some values
-    root->children()[0]->backpropagate(7);
-    root->children()[0]->backpropagate(17);
-    root->children()[0]->backpropagate(33);
-    root->children()[1]->backpropagate(3);
-    root->children()[1]->backpropagate(3);
-    root->children()[1]->backpropagate(3);
-    root->children()[1]->backpropagate(3);
-    root->children()[2]->backpropagate(2);
-
-    CHECK_EQUAL(root->children()[0], selector.select(root));
-
-    root->children()[3]->backpropagate(12);
-    root->children()[3]->backpropagate(13);
-    root->children()[4]->backpropagate(17);
-    root->children()[4]->backpropagate(177);
-    root->children()[5]->backpropagate(18);
-    root->children()[5]->backpropagate(18);
-
-     CHECK_EQUAL(root->children()[4], selector.select(root));
-
-    root->children()[5]->backpropagate(-10);
-    root->children()[5]->backpropagate(300);
-    root->children()[4]->backpropagate(177);
-
-    CHECK_EQUAL(root->children()[5], selector.select(root));
-
-    root->children()[7]->backpropagate(999);
-    root->children()[7]->backpropagate(0);
-    root->children()[7]->backpropagate(10);
-
-    CHECK_EQUAL(root->children()[7], selector.select(root));
   }
 }
 

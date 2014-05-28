@@ -13,7 +13,19 @@ class RunningStats {
 public:
   RunningStats();
   void clear();
-  void push(const double& x);
+
+  // ----------------------------------------------------------------------
+  /// @brief   add a new value to the object
+  ///
+  /// @param x numeric input value
+  // ----------------------------------------------------------------------
+  void push(const double &x);
+
+  // ----------------------------------------------------------------------
+  /// @brief   number of samples from which mean etc are calculated
+  ///
+  /// @return number of samples
+  // ----------------------------------------------------------------------
   long long num_data_values() const;
   double mean() const;
   double variance() const;

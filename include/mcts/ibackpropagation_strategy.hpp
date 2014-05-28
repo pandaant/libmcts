@@ -59,5 +59,4 @@ public:
 };
 }
 
-#endif /* BACKPROPAGATION_STRATEGY_H */
-
+#endif

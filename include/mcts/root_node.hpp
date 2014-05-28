@@ -43,10 +43,13 @@ public:
   ///
   /// @param value to consume
   // ----------------------------------------------------------------------
-  virtual void backpropagate(const double& value) {
+  virtual void backpropagate(const double &value) {
     WrapNode::backprop_strat_->on_backpropagate(value);
   }
 
+  // ----------------------------------------------------------------------
+  /// @brief   use the select_child function of the wrapped node
+  // ----------------------------------------------------------------------
   using WrapNode::select_child;
 };
 }

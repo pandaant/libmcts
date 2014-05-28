@@ -19,11 +19,6 @@ class SamplingToFunctionSelector : public ISelectionStrategy<Context, Config> {
   typedef typename ISelectionStrategy<Context, Config>::sstrategy_t sstrategy_t;
 
 public:
-  /// number of samples before the strategy is switched.
-  int threshold;
-  sstrategy_t *function_strat;
-  sampling_selector_t sselector;
-
   // ----------------------------------------------------------------------
   /// @brief   create new selector
   ///
@@ -39,6 +34,12 @@ public:
     return (node->nb_samples() < threshold) ? sselector.select(node)
                                             : function_strat->select(node);
   }
+
+protected:
+  /// number of samples before the strategy is switched.
+  int threshold;
+  sstrategy_t *function_strat;
+  sampling_selector_t sselector;
 };
 }
 

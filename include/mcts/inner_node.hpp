@@ -18,7 +18,7 @@ namespace mcts {
 template <typename Context, typename Config>
 class InnerNode : public INode<Context, Config> {
   typedef typename INode<Context, Config>::node_t node_t;
-  typedef typename Visitor<Context, Config>::visitor_t visitor_t;
+  typedef typename IVisitor<Context, Config>::visitor_t visitor_t;
 
   /// stores the context for the current node
   Context context_;
@@ -73,7 +73,7 @@ public:
 
   virtual int nb_samples() const { return backprop_strat_->nb_samples(); }
 
-  virtual void backpropagate(const double& value) {
+  virtual void backpropagate(const double &value) {
     backprop_strat_->on_backpropagate(value);
     parent_->backpropagate(value);
   }

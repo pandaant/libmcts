@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <algorithm>
-#include "visitor.hpp"
+#include "ivisitor.hpp"
 
 namespace mcts {
 using std::vector;
@@ -16,7 +16,7 @@ using std::vector;
 /// @tparam Config  @README
 // ----------------------------------------------------------------------
 template <typename Context, typename Config> class INode {
-  typedef typename Visitor<Context, Config>::visitor_t visitor_t;
+  typedef typename IVisitor<Context, Config>::visitor_t visitor_t;
 
 public:
   typedef INode<Context, Config> node_t;
@@ -118,7 +118,7 @@ public:
   // ----------------------------------------------------------------------
   /// @brief   accepts a visitor according to the visitor pattern.
   ///
-  /// @param visitor a visitor
+  /// @param visitor object
   // ----------------------------------------------------------------------
   virtual void accept(visitor_t *visitor) = 0;
 
@@ -128,7 +128,7 @@ public:
   ///
   /// @param value
   // ----------------------------------------------------------------------
-  virtual void backpropagate(const double& value) = 0;
+  virtual void backpropagate(const double &value) = 0;
 
   // ----------------------------------------------------------------------
   /// @brief   recursively counts number of childen beneth this nodes.
