@@ -7,7 +7,7 @@ INCLUDES=-I ./include/mcts \
 CXXFLAGS=-m64 -static -ansi -std=c++11 \
 		 -MMD -MP 
 
-DOC_OUT = doc/*
+DOC_OUT = doc
 
 ifeq ($(target),debug)
     CXXFLAGS +=-O0 -Weverything -Wno-c++98-compat #-Werror
@@ -39,6 +39,7 @@ clean:
 	rm -f -r $(DOC_OUT)
 
 doc:
+	mkdir -p $(DOC_OUT)
 	doxygen doxyfile
 
 -include $(DEP_FILES)

@@ -13,7 +13,6 @@ INCLUDES = -I ../include/mcts \
 # add paths of libraries the
 # targets depend on.
 LIBRARIES = -L ./../lib/$(target) -lmcts \
-			-L ../../libpoker/lib/$(target) -lpoker \
 			-L ../../../dep/UnitTest++ -lUnitTest++ 
 
 # gather all source files and define
