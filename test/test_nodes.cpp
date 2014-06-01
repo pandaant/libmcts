@@ -10,17 +10,18 @@
 SUITE(NodeTests) {
   using namespace mcts;
   typedef typename INode<RockPaperScissors, RPSConfig>::node_t node_t;
-  typedef typename ISelectionStrategy<RockPaperScissors, RPSConfig>::sstrategy_t sstrategy_t;
+  typedef typename ISelectionStrategy<RockPaperScissors, RPSConfig>::sstrategy_t
+  sstrategy_t;
 
   struct Setup {
-    RockPaperScissors context;
-    Player p1, p2;
-    ActionType::Enum p1a, p2a;
-    RPSConfig *conf;
     int game;
-    IBackpropagationStrategy *bp_strat;
+    Player p1, p2;
+    RPSConfig *conf;
+    RockPaperScissors context;
+    ActionType::Enum p1a, p2a;
     sstrategy_t *select_strat;
     sstrategy_t *move_select_strat;
+    IBackpropagationStrategy *bp_strat;
 
     Setup() {
       game = 1;
@@ -28,20 +29,18 @@ SUITE(NodeTests) {
       p2 = Player("simon");
       p1a = ActionType::PAPER;
       p2a = ActionType::ROCK;
-      context = RockPaperScissors(p1, p2, p1a, p2a, game);
       bp_strat = new AvgBackpropagationStrategy();
-      select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
-      move_select_strat = new MaxValueSelector<RockPaperScissors,RPSConfig>();
-
+      context = RockPaperScissors(p1, p2, p1a, p2a, game);
+      select_strat = new MaxValueSelector<RockPaperScissors, RPSConfig>();
+      move_select_strat = new MaxValueSelector<RockPaperScissors, RPSConfig>();
       conf = new RPSConfig(bp_strat, select_strat, move_select_strat, false);
     }
 
     ~Setup() {
-      //delete context;
       delete conf;
-      delete move_select_strat;
       delete bp_strat;
       delete select_strat;
+      delete move_select_strat;
     }
   };
 
@@ -56,7 +55,8 @@ SUITE(NodeTests) {
 
     RockPaperScissors c = RockPaperScissors(p1, p2, p1a, p2a, game);
 
-    EndNode<RockPaperScissors,RPSConfig> *n = new EndNode<RockPaperScissors,RPSConfig>(c, conf, NULL);
+    EndNode<RockPaperScissors, RPSConfig> *n =
+        new EndNode<RockPaperScissors, RPSConfig>(c, conf, NULL);
     double ev = n->simulate();
 
     CHECK_CLOSE(2, ev, 0.001);
@@ -72,7 +72,7 @@ SUITE(NodeTests) {
     c = RockPaperScissors(p1, p2, p1a, p2a, game);
 
     delete n;
-    n = new EndNode<RockPaperScissors,RPSConfig>(c, conf, NULL);
+    n = new EndNode<RockPaperScissors, RPSConfig>(c, conf, NULL);
     ev = n->simulate();
 
     CHECK_CLOSE(3, ev, 0.001);
@@ -82,7 +82,9 @@ SUITE(NodeTests) {
 
   TEST_FIXTURE(Setup, TestSelectNode) {
 
-    RPSNode<RockPaperScissors,RPSConfig> *n = new RootNode<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors,RPSConfig>>(context, conf);
+    RPSNode<RockPaperScissors, RPSConfig> *n =
+        new RootNode<RockPaperScissors, RPSConfig,
+                     RPSNode<RockPaperScissors, RPSConfig>>(context, conf);
     n->expand();
 
     // backpropagate some values
@@ -113,24 +115,13 @@ SUITE(NodeTests) {
   }
 
   TEST_FIXTURE(Setup, TestSelectRecusively) {
-    RPSNode<RockPaperScissors,RPSConfig> *n = new RootNode<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors,RPSConfig>>(context, conf);
+    RPSNode<RockPaperScissors, RPSConfig> *n =
+        new RootNode<RockPaperScissors, RPSConfig,
+                     RPSNode<RockPaperScissors, RPSConfig>>(context, conf);
 
     node_t *selected = n->select_recusively();
     CHECK(selected->context().is_terminal());
 
     delete n;
   }
-
-  /*  TEST_FIXTURE(Setup, TestSimulate){
-        RPSConfig* conf = new RPSConfig(
-                    new AvgBackpropagationStrategy(),
-                    new MaxValueSelector()
-                    );
-
-        RPSNode<RockPaperScissors,RPSConfig>* n = new RootNode(context, conf);
-
-        node_t* selected = n->select_recusively();
-
-        delete conf;
-    }*/
 }

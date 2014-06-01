@@ -10,7 +10,9 @@ namespace mcts {
 template<typename Context>
 class ISimulationStrategy {
 public:
-  virtual ~SimulationStrategy() {}
+  typedef ISimulationStrategy<Context> simstrategy_t;
+
+  virtual ~ISimulationStrategy() {}
 
   // ----------------------------------------------------------------------
   /// @brief   calculate the ev of a given context.
@@ -19,7 +21,7 @@ public:
   ///
   /// @return ev of context
   // ----------------------------------------------------------------------
-  virtual double simulate(Context context) const = 0;
+  virtual double simulate(const Context &context) = 0;
 };
 }
 

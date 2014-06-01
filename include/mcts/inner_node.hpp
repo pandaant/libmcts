@@ -61,7 +61,7 @@ public:
     return selectedChild;
   }
 
-  virtual double simulate() const {
+  virtual double simulate() {
     throw std::runtime_error("not supported.");
   }
 

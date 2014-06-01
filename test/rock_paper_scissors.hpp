@@ -1,5 +1,5 @@
 #ifndef Player_H
-#define	Player_H
+#define Player_H
 
 #include <string>
 #include <vector>
@@ -21,13 +21,12 @@ struct Player {
   Player(const Player &p)
       : name(p.name), won(p.won), tie(p.tie), lost(p.lost) {}
 
-  Player& operator=(const Player &p)
-  {
-      name = p.name;
-      won = p.won;
-      tie = p.tie;
-      lost =p.lost;
-      return *this;
+  Player &operator=(const Player &p) {
+    name = p.name;
+    won = p.won;
+    tie = p.tie;
+    lost = p.lost;
+    return *this;
   }
 
   int sum() const { return won + tie + lost; }
@@ -42,7 +41,7 @@ struct Player {
 #endif
 
 #ifndef ROCK_PAPER_SCISSORS_H
-#define	ROCK_PAPER_SCISSORS_H
+#define ROCK_PAPER_SCISSORS_H
 
 #include <string>
 #include <vector>
@@ -138,4 +137,4 @@ public:
   }
 };
 
-#endif	/* ROCK_PAPER_SCISSORS_H */
+#endif /* ROCK_PAPER_SCISSORS_H */

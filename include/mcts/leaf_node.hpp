@@ -1,6 +1,8 @@
 #ifndef LEAF_NODE_H
 #define LEAF_NODE_H
 
+#include <stdexcept>
+
 namespace mcts {
 
 // ----------------------------------------------------------------------
