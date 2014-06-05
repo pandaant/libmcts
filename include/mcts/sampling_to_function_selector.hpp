@@ -27,8 +27,8 @@ public:
   /// @param function_strat_ pointer to selection strategy to switch to.
   // ----------------------------------------------------------------------
   SamplingToFunctionSelector(int threshold_, sstrategy_t *function_strat_)
-      : threshold(threshold_), sselector(sampling_selector_t()),
-        function_strat(function_strat_) {}
+      : threshold(threshold_), function_strat(function_strat_),
+        sselector(sampling_selector_t()) {}
 
   node_t *select(node_t *node) {
     return (node->nb_samples() < threshold) ? sselector.select(node)

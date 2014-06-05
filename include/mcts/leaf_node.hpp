@@ -19,7 +19,7 @@ class LeafNode : public INode<Context, Config> {
 
 public:
   LeafNode(const Context &context, Config *config, node_t *parent)
-      : context_(context), parent_(parent), config_(config), nb_samples_(0) {}
+      : context_(context), config_(config), parent_(parent), nb_samples_(0) {}
 
   virtual ~LeafNode() {}
 
