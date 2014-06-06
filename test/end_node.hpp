@@ -21,7 +21,7 @@ struct EndNode : public LeafNode<Context, Config> {
 
   virtual double variance() const { return 0; }
 
-  virtual double simulate() const {
+  virtual double simulate() const{
     double payoff_3_games = 3;
     return (this->context().p1.pwin() * payoff_3_games) +
            (this->context().p1.ptie() * payoff_3_games * 0.5);

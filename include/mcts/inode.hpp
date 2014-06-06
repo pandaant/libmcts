@@ -113,7 +113,7 @@ public:
   ///
   /// @return the expected value of the evaluated context.
   // ----------------------------------------------------------------------
-  virtual double simulate() = 0;
+  virtual double simulate() const = 0;
 
   // ----------------------------------------------------------------------
   /// @brief   accepts a visitor according to the visitor pattern.
