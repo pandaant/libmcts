@@ -58,7 +58,7 @@ public:
   /// @return a resultobject
   // ----------------------------------------------------------------------
   ResultType result() {
-    return ResultType(tree->config()->move_selection_strat()->select(tree));
+    return ResultType(tree->config()->move_selector()->select(tree));
   }
 
   // ----------------------------------------------------------------------

@@ -32,7 +32,7 @@ public:
 
   generator_t *nb_gen() { return nb_gen_; }
 
-  sstrategy_t *move_selection_strat() { return move_selection_strat_; }
+  sstrategy_t *move_selector() { return move_selection_strat_; }
 };
 
 #endif
