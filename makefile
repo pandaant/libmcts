@@ -30,7 +30,11 @@ $(LIB_OUT): $(OBJ_FILES)
 obj/$(target)/%.o: src/%.cpp
 	$(CXX) $(INCLUDES) $(CXXFLAGS) $(LIBRARIES) -c -o $@ $<
 
-all: $(LIB_OUT)
+prepare:
+	mkdir -p obj/{release,debug}
+	mkdir -p lib/{release,debug}
+
+all: prepare $(LIB_OUT)
 
 clean:
 	rm -f $(OBJ_FILES)

@@ -8,12 +8,12 @@ CXXFLAGS  = -std=c++11 -MMD -MP
 
 # search paths for header files
 INCLUDES = -I ../include/mcts \
-		   -I ../../../dep/UnitTest++/src
+		   -I /usr/include/UnitTest++
 
 # add paths of libraries the
 # targets depend on.
 LIBRARIES = -L ./../lib/$(target) -lmcts \
-			-L ../../../dep/UnitTest++ -lUnitTest++ 
+			-L /usr/lib/UnitTest++ -lUnitTest++ 
 
 # gather all source files and define
 # where the object files of each target go.
@@ -39,6 +39,9 @@ obj/$(target)/%.o: %.cpp
 $(OUT_BIN): $(OBJ_FILES)
 	$(CXX) $(INCLUDES) $(OBJ_FILES) $(LIBRARIES) -o $(OUT_BIN)
 
+prepare:
+	mkdir -p {bin,obj}/{release,debug}
+
 run:
 	./$(OUT_BIN)
 
@@ -49,7 +52,7 @@ clean:
 	rm -f $(DEP_FILES)
 	rm -f $(OUT_BIN)
 
-all: $(OUT_BIN) 
+all: prepare $(OUT_BIN) 
 
 .PHONY: clean all run
 
