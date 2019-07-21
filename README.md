@@ -39,8 +39,10 @@ typedef typename MCTS<RockPaperScissors, RPSConfig, RPSNode<RockPaperScissors,RP
 // create needed variables
 RockPaperScissors context;
 RPSConfig *conf;
+
 Player p1, p2;
 ActionType::Enum p1a, p2a;
+
 mcts_t *mcts;
 IBackpropagationStrategy *bp_strat;
 sstrategy_t *select_strat;
@@ -49,11 +51,11 @@ sstrategy_t *move_select_strat;
 // creates an initial game state to start simulations from
 int game = 1;
 p1 = Player("mark");
-++p1.won;
 p2 = Player("simon");
-++p2.lost;
+++p1.won; ++p2.lost;
 p1a = ActionType::PAPER;
 p2a = ActionType::ROCK;
+
 context = RockPaperScissors(p1, p2, p1a, p2a, game);
 
 // initialize strategies
@@ -66,7 +68,7 @@ mcts = new mcts_t(context, conf);
 
 // iterate 1000 times
 for (int i = 0; i < 1000; ++i)
-	mcts->iterate();
+    mcts->iterate();
 
 // get the result of the simulations
 RPSResult<RockPaperScissors, RPSConfig> result = mcts->result();
