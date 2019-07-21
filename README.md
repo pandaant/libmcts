@@ -83,16 +83,22 @@ delete select_strat;
 
 
 
+## When creating your own abstactions
 
+The derived context object has to implement the following functions to interact properly with the library. The transition function returns a vector of new contexts that are derived from the current context.
 
+```c++
+class Context{
+	vector<Context> transition();  
+}
+```
 
+The used config object has to implement the following functions to interact properly with the library. The nb_gen returns the rng generator used for internal use. 
 
-The used Context object has to implement the following functions to interact properly with the library.
-     class Context{
-         vector<Context> transition();    
-     }
+The generator itself needs to implement the () operator to generate a new number.
 
-The used Config object has to implement the following functions to interact properly with the library.
-     class Config{
-        generator\_t *nb_gen();
-     }
+```c++
+class Config{
+	generator\_t *nb_gen();
+}
+```
