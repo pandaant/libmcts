@@ -20,6 +20,8 @@ $ cd test
 $ make all run
 ```
 
+A compiled version of the doxygen documentation can be found [here](http://mark-zumbruch.de/documentation/libmcts/)
+
 ## Usage
 
 The usage will be demonstrated using an example implementation for the game of Rock, Paper, Scissors (found in the test folder).
